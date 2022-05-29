@@ -65,27 +65,28 @@ mod tests{
 
     #[test]
     fn case_sensitive() {
-        let query = "duct";
+        let query = "da";
         let contents = "\
-Rust:
-safe, fast, productive.
-Pick three.
-Duct tape.";
+iyo arabets rostevan, mepe gvtisagan sviani
+magali, uxvi, mdabali, lashqar-mravali, ymiani,
+mosamartle DA mowyale, morchmuli, gangebiani,
+tvit meomari uebro, kvlav moubari wyliani";
 
-        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+        assert_eq!(vec!["magali, uxvi, mdabali, lashqar-mravali, ymiani,"], search(query, contents));
     }
 
     #[test]
     fn case_insensitive() {
-        let query = "rUsT";
+        let query = "rust";
         let contents = "\
-Rust:
-safe, fast, productive.
-Pick three.
-Trust me.";
+RUST__??
+rUsTTT!!
+druSTSS
+Roast
+Rust";
 
         assert_eq!(
-            vec!["Rust:", "Trust me."],
+            vec!["RUST__??", "rUsTTT!!", "druSTSS", "Rust"],
             search_case_insensitive(query, contents)
         );
     }
